@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PQKLDV8L');</script>
+<!-- End Google Tag Manager -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroStack — The OS for AI-Powered Productivity</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* --- 1. CSS Variables & Global Styles --- */
+        :root {
+            --dark-navy: #0a0e27;
+            --deep-purple: #6a11cb;
+            --sky-blue: #2575fc;
+            --white: #ffffff;
+            --light-gray: #f4f7fa;
+            --text-primary: #1d2b4f;
+            --text-secondary: #5a647e;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -4px rgba(0, 0, 0, 0.07);
+            --shadow-lg: 0 20px 25px -5px rgba(106, 17, 203, 0.1), 0 8px 10px -6px rgba(106, 17, 203, 0.1);
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--white);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- 2. Typography & Animations --- */
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            color: var(--dark-navy);
+            font-weight: 600;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .section-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem auto;
+        }
+        
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0.7; }
+            50% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.7; }
+        }
+
+        /* --- 3. Navbar --- */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+        .nav-logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark-navy);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        .nav-logo span {
+             background: linear-gradient(45deg, var(--deep-purple), var(--sky-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: var(--deep-purple);
+        }
+        .nav-login {
+            background: linear-gradient(45deg, var(--deep-purple), var(--sky-blue));
+            color: var(--white);
+            padding: 8px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+        .nav-login:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* --- 4. Hero Section --- */
+        .hero {
+            position: relative;
+            padding-top: 180px;
+            padding-bottom: 120px;
+            text-align: center;
+            overflow: hidden;
+            background-color: var(--white);
+        }
+        .hero-background {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(106, 17, 203, 0.05) 0%, rgba(255, 255, 255, 0) 60%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse 8s infinite ease-in-out;
+            z-index: 0;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.2;
+            max-width: 800px;
+            margin: 0 auto 1.5rem auto;
+            color: var(--dark-navy);
+        }
+        .hero-cta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            font-family: var(--font-heading);
+            font-weight: 500;
+            padding: 14px 30px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-primary {
+            background: linear-gradient(45deg, var(--deep-purple), var(--sky-blue));
+            color: var(--white);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: var(--dark-navy);
+            border: 2px solid var(--border-color);
+        }
+        .btn-secondary:hover {
+            background: var(--light-gray);
+            border-color: var(--text-secondary);
+        }
+        .btn-tertiary {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        .btn-tertiary:hover {
+            color: var(--deep-purple);
+        }
+
+        /* --- 5. "Why NeuroStack" Section --- */
+        .why-section {
+            padding: 80px 0;
+            background-color: var(--light-gray);
+        }
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .why-card {
+            text-align: center;
+        }
+        .why-card svg {
+            width: 48px;
+            height: 48px;
+            stroke: var(--deep-purple);
+            margin-bottom: 1rem;
+        }
+        .why-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-navy);
+        }
+
+        /* --- 6. Apps Grid Section --- */
+        .apps-section {
+            padding: 80px 0;
+        }
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .app-card {
+            background-color: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .app-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+        .app-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        .app-card p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            min-height: 40px; /* To ensure consistent card height */
+        }
+        .app-card a {
+            font-size: 0.9rem;
+            text-decoration: none;
+            font-weight: 500;
+            color: var(--deep-purple);
+            transition: color 0.3s ease;
+        }
+        .app-card a:hover {
+            color: var(--sky-blue);
+        }
+
+        /* --- 7. Testimonials Section --- */
+        .testimonial-section {
+            padding: 80px 0;
+            background-color: var(--light-gray);
+        }
+        .testimonial-card {
+            background: linear-gradient(135deg, var(--deep-purple), var(--dark-navy));
+            color: var(--white);
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .testimonial-quote {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+        .testimonial-author {
+            font-weight: 500;
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        /* --- 8. FAQs Section --- */
+        .faq-section {
+            padding: 80px 0;
+        }
+        .faq-container {
+            max-width: 750px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            border-bottom: 1px solid var(--border-color);
+        }
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            text-align: left;
+            padding: 1.5rem 0;
+            font-family: var(--font-heading);
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: var(--dark-navy);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--deep-purple);
+            transition: transform 0.3s ease;
+        }
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            color: var(--text-secondary);
+            padding-right: 1.5rem; /* Space for icon */
+        }
+        .faq-answer p {
+            padding-bottom: 1.5rem;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 200px; /* Adjust if answers are longer */
+        }
+
+        /* --- 9. Footer --- */
+        .footer {
+            background-color: var(--dark-navy);
+            color: var(--light-gray);
+            padding: 60px 0 20px 0;
+        }
+        .footer a {
+            color: var(--light-gray);
+            text-decoration: none;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        .footer-column h5 {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--white);
+        }
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        .footer-links a:hover {
+            color: var(--sky-blue);
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        /* --- 10. Mobile Responsiveness --- */
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Simplified for demo, full impl would need a burger menu */
+            .hero h1 { font-size: 2.5rem; }
+            .hero-cta { flex-direction: column; }
+            .section-title { font-size: 2rem; }
+            .apps-grid { grid-template-columns: 1fr; }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PQKLDV8L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+    <!-- 1. Top Navbar -->
+    <header class="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="nav-logo">🧠 <span>Neuro</span>Stack</a>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#apps">Apps</a></li>
+                </ul>
+                <a href="#" class="nav-login">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- 2. Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-background"></div>
+            <div class="container hero-content">
+                <h1>One OS. Infinite Tools. <br> Unlock Your AI Power.</h1>
+                <div class="hero-cta">
+                    <a href="#apps" class="btn btn-primary">Explore Apps</a>
+                    <a href="#" class="btn btn-secondary">Try Free</a>
+                    <a href="#" class="btn btn-tertiary">Watch Demo</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Why NeuroStack? Section -->
+        <section class="why-section fade-in-section" id="about">
+            <div class="container">
+                <h2 class="section-title">Why NeuroStack?</h2>
+                <p class="section-subtitle">NeuroStack combines 20+ AI apps into one streamlined interface, replacing expensive subscriptions and complex workflows.</p>
+                <div class="why-grid">
+                    <div class="why-card">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brain" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M15.5 13a3.5 3.5 0 0 0 -3.5 3.5v1a3.5 3.5 0 0 0 7 0v-1.8"></path><path d="M8.5 13a3.5 3.5 0 0 1 3.5 3.5v1a3.5 3.5 0 0 1 -7 0v-1.8"></path><path d="M17.5 16a3.5 3.5 0 0 0 0 -7h-1.5"></path><path d="M12 9.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path><path d="M6.5 16a3.5 3.5 0 0 1 0 -7h1.5"></path><path d="M12 3a2 2 0 0 1 2 2"></path><path d="M12 3a2 2 0 0 0 -2 2"></path></svg>
+                        <h3>AI-Powered</h3>
+                        <p>Leverage state-of-the-art AI for every task, from writing to coding.</p>
+                    </div>
+                    <div class="why-card">
+                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-source-code" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M14.5 4h2.5a3 3 0 0 1 3 3v10a3 3 0 0 1 -3 3h-10a3 3 0 0 1 -3 -3v-10a3 3 0 0 1 3 -3h2.5"></path><path d="M6 10l-2 2l2 2"></path><path d="M10 10l2 2l-2 2"></path></svg>
+                        <h3>100% Open-Source</h3>
+                        <p>Built on free, powerful models. No hidden costs or vendor lock-in.</p>
+                    </div>
+                    <div class="why-card">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12.5 21h-6.5a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v5"></path><path d="M16 3v4"></path><path d="M8 3v4"></path><path d="M4 11h16"></path><path d="M16 19h6"></path><path d="M19 16v6"></path></svg>
+                        <h3>Weekly App Drops</h3>
+                        <p>Our library is always growing. Get new tools and features every week.</p>
+                    </div>
+                    <div class="why-card">
+                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-check" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path><path d="M6 21v-2a4 4 0 0 1 4 -4h4"></path><path d="M15 19l2 2l4 -4"></path></svg>
+                        <h3>Freelancer-Ready</h3>
+                        <p>Manage clients, projects, and invoices all within a single ecosystem.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Core Apps Grid -->
+        <section class="apps-section fade-in-section" id="apps">
+            <div class="container">
+                <h2 class="section-title">Explore the App Ecosystem</h2>
+                <p class="section-subtitle">Over 20 purpose-built applications ready to supercharge your workflow. More added weekly.</p>
+                <div class="apps-grid">
+                    <!-- Row 1 -->
+                    <div class="app-card"><h4>PromptNest</h4><p>Your centralized library for crafting and managing AI prompts.</p><a href="#">Learn More &rarr;</a></div>
+                    <div class="app-card"><h4>GameForge AI</h4><p>Generate game assets, storylines, and concepts with AI.</p><a href="#">Learn More &rarr;</a></div>
+                    <div class="app-card"><h4>DigiCrafter</h4><p>Create AI-powered digital products like ebooks and guides.</p><a href="#">Learn More &rarr;</a></div>
+                    <div class="app-card"><h4>LeadPulse AI</h4><p>Analyze and score potential leads from any source.</p><a href="#">Learn More &rarr;</a></div>
+                    <!-- Row 2 -->
+                    <div class="app-card"><h4>Resumind</h4><p>Craft the perfect resume tailored to any job description instantly.</p><a href="#">Learn More &rarr;</a></div>
+                    <div class="app-card"><h4>ChatPilot</h4><p>Build custom AI chatbots for your websites and apps.</p><a href="#">Learn More &rarr;</a></div>
+                    <div class="app-card"><h4>CourseMorph</h4><p>Transform any document or video into a structured online course.</p><a href="#">Learn More &rarr;</a></div>
+                    <div class="app-card"><h4>VoiceCast AI</h4><p>Clone your voice for ultra-realistic text-to-speech narration.</p><a href="#">Learn More &rarr;</a></div>
+                    <!-- Row 3 -->
+                    <div class="app-card"><h4>LaunchPilot</h4><p>Generate complete launch plans and marketing strategies.</p><a href="#">Learn More &rarr;</a></div>
+                    <div class="app-card"><h4>ColdPilot AI</h4><p>Write hyper-personalized cold outreach emails at scale.</p><a href="#">Learn More &rarr;</a></div>
+                    <div class="app-card"><h4>SocialPilot AI</h4><p>Automate your social media content creation and scheduling.</p><a href="#">Learn More &rarr;</a></div>
+                    <div class="app-card"><h4>InvoiceIQ</h4><p>Create and track professional invoices with smart reminders.</p><a href="#">Learn More &rarr;</a></div>
+                    <!-- Row 4 -->
+                    <div class="app-card"><h4>ProposalPilot AI</h4><p>Design beautiful, winning proposals in minutes.</p><a href="#">Learn More &rarr;</a></div>
+                    <div class="app-card"><h4>MeetingMind</h4><p>Get AI-powered summaries, transcripts, and action items.</p><a href="#">Learn More &rarr;</a></div>
+                    <div class="app-card"><h4>TaskScriptor</h4><p>Turn project goals into actionable, step-by-step task lists.</p><a href="#">Learn More &rarr;</a></div>
+                    <div class="app-card"><h4>FormFusion</h4><p>Create smart, conversational forms that adapt to user input.</p><a href="#">Learn More &rarr;</a></div>
+                     <!-- Row 5 -->
+                    <div class="app-card"><h4>ClientBrief AI</h4><p>Generate comprehensive project briefs from client conversations.</p><a href="#">Learn More &rarr;</a></div>
+                    <div class="app-card"><h4>BrandBoard</h4><p>Develop complete brand identity kits with logos and guidelines.</p><a href="#">Learn More &rarr;</a></div>
+                    <div class="app-card"><h4>SmartSite Starter</h4><p>Instantly generate a full landing page from a single prompt.</p><a href="#">Learn More &rarr;</a></div>
+                    <div class="app-card"><h4>QuoteBuilder AI</h4><p>Create accurate project quotes based on scope and deliverables.</p><a href="#">Learn More &rarr;</a></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Testimonial Section -->
+        <section class="testimonial-section fade-in-section" id="testimonials">
+            <div class="container">
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">"I replaced five different SaaS subscriptions and built an entire agency stack using NeuroStack in a week. It’s an absolute game-changer."</p>
+                    <p class="testimonial-author">&mdash; Alex Carter, Founder of a Digital Agency</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 6. FAQs Section -->
+        <section class="faq-section fade-in-section" id="features">
+             <div class="container">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <button class="faq-question">Do I need to pay to use these apps?</button>
+                        <div class="faq-answer">
+                            <p>No, the core of NeuroStack is built on free, powerful open-source AI models. You can get started and use the majority of our tools without any subscription fees.</p>
+                        </div>
+                    </div>
+                     <div class="faq-item">
+                        <button class="faq-question">What tools are included?</button>
+                        <div class="faq-answer">
+                            <p>NeuroStack includes over 20 apps covering writing, marketing, client management, development, and content creation. See the "Core Apps" section above for a full list.</p>
+                        </div>
+                    </div>
+                     <div class="faq-item">
+                        <button class="faq-question">Can I use it for managing my clients?</button>
+                        <div class="faq-answer">
+                            <p>Absolutely. NeuroStack is designed for freelancers and agencies. Apps like InvoiceIQ, ProposalPilot, and ClientBrief AI are built specifically to streamline client work.</p>
+                        </div>
+                    </div>
+                     <div class="faq-item">
+                        <button class="faq-question">How often are new apps added?</button>
+                        <div class="faq-answer">
+                            <p>We're committed to constant innovation. We roll out "App Drops" with new tools, features, and major updates on a weekly basis, so the platform is always evolving.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <!-- 7. Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                     <a href="#" class="nav-logo" style="margin-bottom: 1rem; color: white;">🧠 <span>Neuro</span>Stack</a>
+                     <p style="color: var(--text-secondary);">The Operating System for AI-Powered Productivity.</p>
+                </div>
+                <div class="footer-column">
+                    <h5>Product</h5>
+                    <ul class="footer-links">
+                        <li><a href="#apps">App Suite</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#">Roadmap</a></li>
+                        <li><a href="#">Pricing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h5>Company</h5>
+                    <ul class="footer-links">
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h5>Legal</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 NeuroStack. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+    // --- FAQ Accordion Script ---
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        question.addEventListener('click', () => {
+            const currentlyActive = document.querySelector('.faq-item.active');
+            if (currentlyActive && currentlyActive !== item) {
+                currentlyActive.classList.remove('active');
+            }
+            item.classList.toggle('active');
+        });
+    });
+
+    // --- Scroll Fade-in Animation Script ---
+    const sections = document.querySelectorAll('.fade-in-section');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+    </script>
+</body>
+</html>
